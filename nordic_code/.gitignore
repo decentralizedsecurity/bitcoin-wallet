@@ -1,0 +1,51 @@
+# Directorios de construcción
+build/
+out/
+
+# Directorios y archivos específicos de Zephyr
+/.west/
+/zephyrproject/
+/zephyr/module-cache/
+
+# Archivos de configuración específicos del entorno y del usuario
+*.launch
+*.code-workspace
+.settings/
+.project
+.cproject
+.ccls-cache/
+
+# Archivos temporales que pueden ser creados por editores de texto y herramientas de desarrollo
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+.*~
+
+# Directorios y archivos de compilación y herramientas
+*.o
+*.d
+*.elf
+*.map
+*.hex
+*.bin
+*.lst
+*.zip
+*.tar.gz
+*.tar
+*.exe
+*.dll
+*.so
+*.a
+*.ko
+*.obj
+*.pdb
+
+# Archivos de log y archivos temporales generados por herramientas de desarrollo
+*.log
+temp/
+
+# Otros archivos y directorios a ignorar
+.DS_Store
+Thumbs.db
