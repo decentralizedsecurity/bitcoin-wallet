@@ -7,6 +7,7 @@ target_sources(app PRIVATE
   src/main.c
   src/menu.c
   src/buttons.c
+  src/crypto.c
 )
 
 

@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "crypto.h"
 #include <zephyr/sys/printk.h>
 
 volatile menu_state_t current_state = MENU_MAIN;
