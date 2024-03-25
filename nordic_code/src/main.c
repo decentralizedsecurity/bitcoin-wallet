@@ -7,32 +7,49 @@
 #include "crypto.h"
 
 int main(void) {
-    printk("INICIANDO HARDWARE WALLET\n");
 
-    // Inicializar el sistema criptográfico
-    crypto_init();
-    printk("Sistema criptografico inicializado.\n");
+   int status;
 
-    // Generar un nuevo par de claves secp256k1
-    if (generate_ecdsa_keypair() == 0) {
-        printk("Par de claves generado exitosamente.\n");
-    } else {
-        printk("Error generando el par de claves.\n");
-    }
+	printk("Starting ECDSA example...");
 
-    // Aquí podrías añadir más lógica, como exportar la clave pública, firmar un mensaje, etc.
+	status = crypto_init();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
 
-    // Limpiar y finalizar el sistema criptográfico
-    crypto_finish();
-    printk("Sistema criptografico finalizado.\n");
-    /*
-    print_menu_options();
-    setup_buttons();
+	status = generate_ecdsa_keypair();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
 
-    while (1) {
-        // Un pequeño retraso para evitar rebotes de botón
-        k_sleep(K_MSEC(500));
-    }
+	status = import_ecdsa_pub_key();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
 
-    */
+	status = sign_message();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = verify_message();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = crypto_finish();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	printk(APP_SUCCESS_MESSAGE);
+
+	return APP_SUCCESS;
+    
 }

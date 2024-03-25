@@ -11,11 +11,6 @@
 #include <tfm_ns_interface.h>
 #endif
 
-#define APP_SUCCESS		(0)
-#define APP_ERROR		(-1)
-#define APP_SUCCESS_MESSAGE "Example finished successfully!"
-#define APP_ERROR_MESSAGE "Example exited with error!"
-
 #define PRINT_HEX(p_label, p_text, len)\
 	({\
 		LOG_INF("---- %s (len: %u): ----", p_label, len);\
@@ -36,6 +31,8 @@ static uint8_t m_hash[NRF_CRYPTO_EXAMPLE_ECDSA_HASH_SIZE];
 static psa_key_id_t keypair_id;
 static psa_key_id_t pub_key_id;
 
+// Aquí van las implementaciones de tus funciones como se definieron anteriormente...
+// Por ejemplo:
 
 int crypto_init(void)
 {
@@ -243,5 +240,4 @@ int main(void)
 	return APP_SUCCESS;
 }
 */
-
 

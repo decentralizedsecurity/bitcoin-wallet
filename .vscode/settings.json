@@ -6,6 +6,11 @@
         "printk.h": "c",
         "bluetooth.h": "c",
         "buttons.h": "c",
-        "crypto_extra.h": "c"
+        "crypto_extra.h": "c",
+        "log.h": "c",
+        "ecdsa_secp256k1_example.h": "c",
+        "kernel.h": "c",
+        "menu.h": "c",
+        "tfm_ns_interface.h": "c"
     }
 }
