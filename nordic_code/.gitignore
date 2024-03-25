@@ -1,6 +1,12 @@
 # Directorios de construcción
 build/
 out/
+# editors
+*.swp
+*~
+
+# build
+/build*/
 
 # Directorios y archivos específicos de Zephyr
 /.west/

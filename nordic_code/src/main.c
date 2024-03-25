@@ -1,16 +1,55 @@
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
+#include <psa/crypto.h>
+#include <psa/crypto_extra.h>
 #include "buttons.h"
 #include "menu.h"
+#include "crypto.h"
 
 int main(void) {
-    printk("Hardware Wallet iniciado.\n");
-    
-    print_menu_options();
-    setup_buttons();
 
-    while (1) {
-        // Un pequeño retraso para evitar rebotes de botón
-        k_sleep(K_MSEC(500));
-    }
+   int status;
+
+	printk("Starting ECDSA example...");
+
+	status = crypto_init();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = generate_ecdsa_keypair();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = import_ecdsa_pub_key();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = sign_message();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = verify_message();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	status = crypto_finish();
+	if (status != APP_SUCCESS) {
+		printk(APP_ERROR_MESSAGE);
+		return APP_ERROR;
+	}
+
+	printk(APP_SUCCESS_MESSAGE);
+
+	return APP_SUCCESS;
+    
 }
