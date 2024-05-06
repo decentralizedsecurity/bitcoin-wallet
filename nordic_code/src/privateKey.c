@@ -32,10 +32,14 @@ char* generate_private_key() {
     return private_key;
 }
 
-char* convert_private_key_to_wif(const char* hex_priv_key) {
+char* convert_private_key_to_wif(const char* hex_priv_key, int mainnet) {
     char extended_key[69];
-    sprintf(extended_key, "80%s01", hex_priv_key);
 
+    if(mainnet == 0)
+        sprintf(extended_key, "80%s01", hex_priv_key); // 80 + clave privada + 01 (para indicar la red mainnet y la compresion activada)
+    else
+        sprintf(extended_key, "ef%s01", hex_priv_key); // ef + clave privada + 01 (para indicar la red testnet y la compresion activada)
+   
     size_t len = (strlen(extended_key) / 2);
     unsigned char* extended_key_bytes = malloc(len);
     if (!extended_key_bytes) return NULL;
@@ -44,7 +48,7 @@ char* convert_private_key_to_wif(const char* hex_priv_key) {
     }
 
     // Realizar doble SHA-256 sobre la clave extendida
-    unsigned char hash[PSA_HASH_SIZE(PSA_ALG_SHA_256)];
+    unsigned char hash[PSA_HASH_MAX_SIZE];  // Usar PSA_HASH_MAX_SIZE para soportar el tamaño máximo de hash.
     size_t hash_length;
 
     psa_hash_operation_t hash_op = psa_hash_operation_init(); // Inicializar la operación de hash
