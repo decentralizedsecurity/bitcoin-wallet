@@ -11,6 +11,9 @@
         "ecdsa_secp256k1_example.h": "c",
         "kernel.h": "c",
         "menu.h": "c",
-        "tfm_ns_interface.h": "c"
+        "tfm_ns_interface.h": "c",
+        "hex_bytes.h": "c",
+        "string.h": "c",
+        "crypto.h": "c"
     }
 }

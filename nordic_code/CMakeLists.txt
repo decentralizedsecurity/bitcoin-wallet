@@ -19,4 +19,6 @@ target_sources(app PRIVATE
         src/menu.c
         src/crypto.c
         src/base58.c
-        src/privateKey.c)
+        src/privateKey.c
+        src/publicKey.c
+        src/hex_bytes.c)
