@@ -1,55 +1,26 @@
-#include <zephyr/kernel.h>
-#include <zephyr/sys/printk.h>
-#include <psa/crypto.h>
-#include <psa/crypto_extra.h>
-#include "buttons.h"
-#include "menu.h"
-#include "crypto.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "privateKey.h"
 
-int main(void) {
-
-   int status;
-
-	printk("Starting ECDSA example...");
-
-	status = crypto_init();
-	if (status != APP_SUCCESS) {
-		printk(APP_ERROR_MESSAGE);
-		return APP_ERROR;
+int main() {
+	char* private_key = generate_private_key();
+	if (!private_key) {
+		perror("Failed to generate private key");
+		return 1;
 	}
 
-	status = generate_ecdsa_keypair();
-	if (status != APP_SUCCESS) {
-		printk(APP_ERROR_MESSAGE);
-		return APP_ERROR;
+	printf("Clave Privada: %s\n", private_key);
+
+	/*char* wif = convert_private_key_to_wif(private_key);
+	if (!wif) {
+		perror("Failed to convert private key to WIF");
+		return 1;
 	}
 
-	status = import_ecdsa_pub_key();
-	if (status != APP_SUCCESS) {
-		printk(APP_ERROR_MESSAGE);
-		return APP_ERROR;
-	}
+	printf("Clave Privada WIF: %s\n", wif);
+*/
+	free(private_key);
+	//free(wif);
 
-	status = sign_message();
-	if (status != APP_SUCCESS) {
-		printk(APP_ERROR_MESSAGE);
-		return APP_ERROR;
-	}
-
-	status = verify_message();
-	if (status != APP_SUCCESS) {
-		printk(APP_ERROR_MESSAGE);
-		return APP_ERROR;
-	}
-
-	status = crypto_finish();
-	if (status != APP_SUCCESS) {
-		printk(APP_ERROR_MESSAGE);
-		return APP_ERROR;
-	}
-
-	printk(APP_SUCCESS_MESSAGE);
-
-	return APP_SUCCESS;
-    
+	return 0;
 }
