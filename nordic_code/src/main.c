@@ -5,6 +5,8 @@
 #include "privateKey.h"
 #include "publicKey.h"
 #include "hex_bytes.h"
+#include "generateAddress.h"
+#include "pk2hash.h"
 
 int main() {
     char* private_key = generate_private_key();
@@ -28,14 +30,29 @@ int main() {
     size_t public_key_len = sizeof(public_key);
     if (generate_public_key_from_hex(private_key, public_key, &public_key_len)) {
         char* public_key_hex = bytes_to_hex(public_key, public_key_len);
-        printk("Hex Public Key: %s\n", public_key_hex);
+        printk("[COMPRESSED] Hex Public Key: %s\n", public_key_hex);
+        char* hash160 = malloc(41); // 20 bytes en hexadecimal
+        publicKeytoHash(public_key_hex, hash160); // Hace mal la conversión (devuelve otro valor)
+        printk("Public Key Hash: %s\n", hash160); 
+
+        char* address = P2PKH_address(hash160, 1);
+        if (address) {
+                printk("Direccion P2PKH: %s\n", address);
+                free((char*)address); // Asegúrate de liberar la memoria
+            } else {
+                printk("Error al generar la dirección P2PKH.\n");
+            }
+
         free(public_key_hex);
+        free(hash160);
     } else {
         printk("Failed to generate public key\n");
     }
 
     free(private_key);
     free(wif);
+
+    
 
     return 0;
 }
