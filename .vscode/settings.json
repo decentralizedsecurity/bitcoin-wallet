@@ -14,6 +14,11 @@
         "tfm_ns_interface.h": "c",
         "hex_bytes.h": "c",
         "string.h": "c",
-        "crypto.h": "c"
+        "crypto.h": "c",
+        "ripemd.h": "c",
+        "ripemd160.h": "c",
+        "stdint.h": "c",
+        "stdio.h": "c",
+        "stddef.h": "c"
     }
 }

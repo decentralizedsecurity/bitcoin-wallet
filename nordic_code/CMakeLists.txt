@@ -21,4 +21,8 @@ target_sources(app PRIVATE
         src/base58.c
         src/privateKey.c
         src/publicKey.c
-        src/hex_bytes.c)
+        src/hex_bytes.c
+        src/pk2hash.c
+        src/ripemd160.c
+        src/generateAddress.c
+        src/memzero.c)

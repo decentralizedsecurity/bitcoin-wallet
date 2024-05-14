@@ -32,7 +32,7 @@ int main() {
         char* public_key_hex = bytes_to_hex(public_key, public_key_len);
         printk("[COMPRESSED] Hex Public Key: %s\n", public_key_hex);
         char* hash160 = malloc(41); // 20 bytes en hexadecimal
-        publicKeytoHash(public_key_hex, hash160); // Hace mal la conversión (devuelve otro valor)
+        publicKeytoHash(public_key_hex, hash160); 
         printk("Public Key Hash: %s\n", hash160); 
 
         char* address = P2PKH_address(hash160, 1);
