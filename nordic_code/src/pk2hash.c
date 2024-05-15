@@ -6,6 +6,11 @@
 #include "pk2hash.h"
 #include "ripemd160.h" // Incluir la cabecera de RIPEMD-160
 
+/**
+ * @brief Convierte una clave pública en formato hexadecimal a un hash sha256 + RIPEMD-160.
+ * @param data Clave pública en formato hexadecimal.
+ * @param output Buffer para almacenar el hash.
+*/
 void publicKeytoHash(char* data, char *output) {
     psa_status_t status;
     unsigned char sha256_digest[PSA_HASH_MAX_SIZE];

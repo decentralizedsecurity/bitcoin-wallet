@@ -3,7 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Función auxiliar para convertir un solo carácter hexadecimal a su valor numérico equivalente
+/**
+ * Funcion auxiliar para convertir un carácter hexadecimal a un entero
+ * @param c Carácter hexadecimal
+ * @return Entero correspondiente al carácter hexadecimal o -1 si es inválido
+ */
 static int hex_char_to_int(char c) {
     if (c >= '0' && c <= '9') return c - '0';
     if (c >= 'a' && c <= 'f') return c - 'a' + 10;
@@ -11,7 +15,12 @@ static int hex_char_to_int(char c) {
     return -1; // Indicador de error
 }
 
-// Implementación de la función hex_to_bytes
+/** Función para convertir una cadena hexadecimal a bytes
+ * @param hex Cadena hexadecimal
+ * @param bytes Arreglo de bytes para almacenar el resultado
+ * @param bytes_len Longitud del arreglo de bytes
+ * @return 1 si la conversión fue exitosa, 0 si falló
+*/
 int hex_to_bytes(const char *hex, unsigned char *bytes, size_t bytes_len) {
     size_t hex_len = strlen(hex);
     if (hex_len % 2 != 0) {
@@ -38,7 +47,11 @@ int hex_to_bytes(const char *hex, unsigned char *bytes, size_t bytes_len) {
     return 1; // Éxito
 }
 
-// Función para convertir bytes a una cadena hexadecimal
+/** Función para convertir bytes a una cadena hexadecimal
+ * @param bytes Bytes a convertir
+ * @param len Longitud del array de bytes
+ * @return Cadena de caracteres con la representación hexadecimal
+*/
 char* bytes_to_hex(const unsigned char* bytes, size_t len) {
     char* hex_str = (char*)malloc(len * 2 + 1); // Cada byte se convierte en 2 caracteres hexadecimales
     if (!hex_str) return NULL;

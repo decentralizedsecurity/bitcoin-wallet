@@ -6,6 +6,11 @@
 #include <string.h>
 #include "psa/crypto.h"
 
+/**
+ * @brief Función para generar una dirección P2PKH.
+ * @param public_key_hash_hex Hash de la clave pública en hexadecimal.
+ * @param network Red (0 para mainnet y 1 para testnet).
+*/
 char* P2PKH_address(const char* public_key_hash_hex, int network) {
     unsigned char address[25];  // Address buffer
     char* output = malloc(50);  // Output buffer for the final Base58 address

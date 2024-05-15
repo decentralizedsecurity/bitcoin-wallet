@@ -5,6 +5,11 @@
 
 const char BASE58_CHARS[] = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 
+/**
+ * Codifica una cadena hexadecimal a Base58.
+ * @param hex Cadena hexadecimal.
+ * @param output Buffer para almacenar la cadena Base58.
+ */
 void encode_base58(const char *hex, char *output) {
     int values[256]; // Mapeo de caracteres hexadecimales a valores enteros.
     for (int i = 0; i < 256; i++) {
@@ -51,6 +56,11 @@ void encode_base58(const char *hex, char *output) {
     free(bin);
 }
 
+/**
+ * Decodifica una cadena Base58 a hexadecimal.
+ * @param base58 Cadena Base58.
+ * @param output Buffer para almacenar la cadena hexadecimal.
+ */
 void decode_base58(const char* base58, char* output) {
     int values[256]; // Mapeo de caracteres Base58 a valores enteros.
     for (int i = 0; i < 256; i++) {

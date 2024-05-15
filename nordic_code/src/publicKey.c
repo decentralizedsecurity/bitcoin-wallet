@@ -4,13 +4,25 @@
 #include "hex_bytes.h"
 #include <string.h>
 
+/**
+ * @brief Comprime una clave pública no comprimida.
+ * @param uncompressed_key Clave pública no comprimida debe ser un array de 65 bytes (0x04, x, y).
+ * @param compressed_key Buffer para almacenar la clave pública comprimida.
+ */
 void compress_pubkey(const unsigned char *uncompressed_key, unsigned char *compressed_key) {
     // Asumiendo que uncompressed_key es un array de 65 bytes (0x04, x, y)
     int y_parity = uncompressed_key[64] & 1; // Obtenemos la paridad de y (último byte)
-    compressed_key[0] = y_parity ? 0x03 : 0x02; // Prefijo dependiendo de la paridad
+    compressed_key[0] = y_parity ? 0x03 : 0x02; // Prefijo dependiendo de la paridad, 0x03 para y impar y 0x02 para y par 
     memcpy(&compressed_key[1], &uncompressed_key[1], 32); // Copiamos la coordenada x
 }
 
+/**
+ * @brief Genera una clave pública a partir de una clave privada en formato hexadecimal.
+ * @param private_key_hex Clave privada en formato hexadecimal.
+ * @param public_key Buffer para almacenar la clave pública.
+ * @param public_key_len Longitud de la clave pública.
+ * @return 1 si la operación fue exitosa, 0 en caso contrario.
+ */
 int generate_public_key_from_hex(const char *private_key_hex, unsigned char *public_key, size_t *public_key_len) {
     psa_status_t status;
     psa_key_attributes_t attributes = PSA_KEY_ATTRIBUTES_INIT;

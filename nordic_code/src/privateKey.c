@@ -4,6 +4,12 @@
 #include "base58.h"
 #include "psa/crypto.h"
 
+/**
+ * Convierte un array de bytes en hexadecimal
+ * @param hash Array de bytes
+ * @param size Tamaño del array
+ * @return Cadena de caracteres con la representación hexadecimal
+*/
 char* to_hexadecimal(unsigned char* hash, size_t size) {
     char* output = (char*)malloc((size * 2) + 1);
     if (!output) return NULL;
@@ -14,6 +20,10 @@ char* to_hexadecimal(unsigned char* hash, size_t size) {
     return output;
 }
 
+/**
+ * Genera una clave privada aleatoria
+ * @return Clave privada en formato hexadecimal
+*/
 char* generate_private_key() {
     unsigned char bytes[32];
     psa_status_t status;
@@ -32,6 +42,12 @@ char* generate_private_key() {
     return private_key;
 }
 
+/***
+ * Convierte una clave privada en hexadecimal a una clave privada en formato WIF
+ * @param hex_priv_key Clave privada en hexadecimal
+ * @param mainnet 0 para testnet, 1 para mainnet
+ * @return Clave privada en formato WIF o NULL si falla la conversión
+*/
 char* convert_private_key_to_wif(const char* hex_priv_key, int mainnet) {
     char extended_key[69];
 

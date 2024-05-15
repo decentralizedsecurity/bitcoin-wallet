@@ -28,7 +28,8 @@ int main() {
     // Intentar recuperar la clave privada
     size_t private_key_len = sizeof(private_key);
     status = psa_ps_get(PRIVATE_KEY_ID, 0, private_key_len, private_key, &data_length);
-    if (status != PSA_SUCCESS) {
+    
+    if (status != PSA_SUCCESS) { // Clave privada no existe
         printk("La clave privada no existe\n Iniciando generacion de clave privada...\n");
         // Clave no existe, generar una nueva
         char* generated_key = generate_private_key();
@@ -46,7 +47,7 @@ int main() {
             return 1;
         }
         printk("Clave privada generada y almacenada\n");
-    }else{
+    }else{ // Clave privada recuperada con éxito, mostramos datos
         printk("Clave privada recuperada\n");
         
         printk("Clave Privada: %s\n", private_key);
