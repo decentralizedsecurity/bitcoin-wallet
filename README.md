@@ -2,13 +2,13 @@
 
 ## Descripción
 
-`bitcoin-wallet` es una billetera de hardware para Bitcoin que permite a los usuarios generar claves ECDSA, firmar mensajes y realizar otras operaciones criptográficas de manera segura. Esta billetera está diseñada para funcionar en dispositivos basados en la plataforma nRF, aprovechando las capacidades de seguridad y conectividad del hardware de Nordic Semiconductor, específicamente en las placas nRF9160 y nRF5340.
+`bitcoin-wallet` es una prueba de concepto de billetera de hardware para Bitcoin que permite a los usuarios generar claves ECDSA y realizar otras operaciones criptográficas de manera segura. Esta billetera está diseñada para funcionar en dispositivos basados en la CPU Arm Cortex-M33, específicamente en las placas nRF9160DK y nRF5340DK donde aprovechamos las capacidades de seguridad y conectividad del hardware de Nordic Semiconductor.
 
 ## Requisitos Previos
 
 Antes de comenzar a trabajar con el proyecto, asegúrate de tener lo siguiente instalado y configurado en tu entorno de desarrollo:
 
-1. **nRF Connect SDK v2.6.0**: Utilizado para el desarrollo de aplicaciones basadas en los SoCs de Nordic Semiconductor. Instrucciones de instalación en el [sitio oficial de Nordic Semiconductor](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-SDK).
+1. **nRF Connect SDK v2.6.0**: Utilizado para el desarrollo de aplicaciones basadas en los SoCs de Nordic Semiconductor. Instrucciones de instalación en el [sitio oficial de Nordic Semiconductor](https://www.nordicsemi.com/Products/Development-software/nRF-Connect-SDK).
 
 2. **Placas de desarrollo soportadas**:
    - **nRF9160 DK**: Utilizada para el firmware de la carpeta `build`.
