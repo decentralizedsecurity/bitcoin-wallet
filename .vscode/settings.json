@@ -19,6 +19,8 @@
         "ripemd160.h": "c",
         "stdint.h": "c",
         "stdio.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "stdlib.h": "c",
+        "publickey.h": "c"
     }
 }
