@@ -44,7 +44,7 @@ int generate_public_key_from_hex(const char *private_key_hex, unsigned char *pub
         return 0;
     }
 
-    unsigned char uncompressed_key[65];  // Asume el tamaño máximo para una clave pública sin comprimir
+    unsigned char uncompressed_key[65];  // Asume el tamaño máximo para una clave pública sin comprimir 
     size_t uncompressed_length = sizeof(uncompressed_key);
     status = psa_export_public_key(key_handle, uncompressed_key, uncompressed_length, &uncompressed_length);
     if (status != PSA_SUCCESS) {
@@ -54,7 +54,7 @@ int generate_public_key_from_hex(const char *private_key_hex, unsigned char *pub
     }
 
     compress_pubkey(uncompressed_key, public_key);
-    *public_key_len = 33;  // Tamaño fijo para claves públicas comprimidas secp256k1
+    *public_key_len = 33;  // Tamaño fijo para claves públicas comprimidas secp256k1 (0x02 o 0x03 + 32 bytes)
 
     psa_destroy_key(key_handle);
     return 1; // Éxito
